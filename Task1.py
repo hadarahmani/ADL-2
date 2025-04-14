@@ -9,7 +9,6 @@ we have
 """
 from sklearn.datasets import load_diabetes
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 import matplotlib.pyplot as plt
 import numpy as np
@@ -24,7 +23,6 @@ x, delta, eps = np.zeros(A.shape[1]), 1e-4, 0.1
 errors = [] # errors arrays for plotting the errors graph
 
 for step in range(4000):
-    
     # A.T @ A @ x - A.T @ b => A.T(A @ x - b)
     
     eq = A @ x - b
@@ -38,7 +36,7 @@ for step in range(4000):
 
     x = x - eps * gradient
 
-# plotting the graph for the errors 
+# plotting the graph for the MSE 
 plt.plot(errors, marker='o', linestyle='-')
 plt.title("Error $\\|Ax_k - b\\|^2$ over Gradient Descent Steps")
 plt.xlabel("Step - k")
