@@ -16,10 +16,9 @@ import numpy as np
 
 # Loading the dataset
 A, b = load_diabetes(return_X_y=True)
-b = (b - np.mean(b)) / np.std(b) # normalizing the vector b
-m = A.shape[0]
+n = A.shape[m]
 
-x, delta, eps = np.zeros(10), 1e-4, 1 
+x, delta, eps = np.zeros(m), 1e-6, 1e-3 
 
 errors = [] # errors arrays for plotting the errors graph
 
@@ -29,7 +28,7 @@ for step in range(2000):
     
     eq = A @ x - b
     gradient = (2 / m) * (A.T @ eq) 
-    error = np.linalg.norm(eq) ** 2 / m # calculating the 2nd norm for Ax - b
+    error = np.linalg.norm(eq) ** 2 # calculating the 2nd norm for Ax - b
     errors.append(error)
     
     # checking the stopping condition (gradient <= delta)
@@ -42,12 +41,12 @@ for step in range(2000):
 plt.plot(errors, marker='o', linestyle='-')
 plt.title("Error $\\|Ax_k - b\\|^2$ over Gradient Descent Steps")
 plt.xlabel("Step - k")
-plt.ylabel("MSE")
+plt.ylabel("Error")
 plt.grid(True)
 
 final_step = len(errors) - 1
 final_error = errors[-1]
-plt.plot(final_step, final_error, 'ro', label=f'Final Error: {final_error:.2f}')
+plt.plot(final_step, final_error, 'ro', label=f'Final Error: {final_error:.2f} 1e7')
 plt.legend()
 
 
