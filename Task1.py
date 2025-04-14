@@ -19,11 +19,11 @@ A, b = load_diabetes(return_X_y=True)
 b = (b - np.mean(b)) / np.std(b) # normalizing the vector b
 m = A.shape[0]
 
-x, delta, eps = np.zeros(10), 1e-4, 1 
+x, delta, eps = np.zeros(A.shape[1]), 1e-4, 0.1 
 
 errors = [] # errors arrays for plotting the errors graph
 
-for step in range(2000):
+for step in range(4000):
     
     # A.T @ A @ x - A.T @ b => A.T(A @ x - b)
     
