@@ -16,8 +16,9 @@ import numpy as np
 
 # Loading the dataset
 A, b = load_diabetes(return_X_y=True)
+n = A.shape[m]
 
-x, delta, eps = np.zeros(10), 1e-6, 1e-3 
+x, delta, eps = np.zeros(m), 1e-6, 1e-3 
 
 errors = [] # errors arrays for plotting the errors graph
 
@@ -26,7 +27,7 @@ for step in range(2000):
     # A.T @ A @ x - A.T @ b => A.T(A @ x - b)
     
     eq = A @ x - b
-    gradient = 2 * (A.T @ eq) 
+    gradient = (2 / m) * (A.T @ eq) 
     error = np.linalg.norm(eq) ** 2 # calculating the 2nd norm for Ax - b
     errors.append(error)
     
